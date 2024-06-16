@@ -1,5 +1,7 @@
 package com.java8;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -73,7 +75,7 @@ public class Employee {
 	
 	 
 	 list.stream()
-	    .filter(e->e.getName().equalsIgnoreCase("Mary")).findAny().ifPresentOrElse(null, null);;
+	    .filter(e->e.getName().equalsIgnoreCase("Mary")).findAny().ifPresentOrElse(e-> System.out.println(e.getName()), ()-> System.out.println("marry not found"));;
 	 
 	}
 	

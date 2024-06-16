@@ -48,7 +48,7 @@ public class FlateningLinkedList {
     
     
     
-    
+    return null;
   
   }
 
