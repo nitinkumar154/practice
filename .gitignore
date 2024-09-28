@@ -33,3 +33,5 @@ nbactions.xml
 ### VS Code ###
 .vscode/
 /bin/*
+/out/
+/out/
