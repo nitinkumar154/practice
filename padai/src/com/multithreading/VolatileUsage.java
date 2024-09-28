@@ -4,8 +4,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class VolatileUsage {
-static int x= 0; 
-static int y=0;
+volatile static int x= 0;
+volatile  static int y=0;
   public static void method1 () {
 x++;
 y++;

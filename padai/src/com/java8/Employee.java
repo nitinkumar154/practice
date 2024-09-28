@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Employee {
 	private String name;
@@ -75,8 +77,14 @@ public class Employee {
 	
 	 
 	 list.stream()
-	    .filter(e->e.getName().equalsIgnoreCase("Mary")).findAny().ifPresentOrElse(e-> System.out.println(e.getName()), ()-> System.out.println("marry not found"));;
-	 
+	    .filter(e->e.getName().equalsIgnoreCase("Mary")).
+             findAny().ifPresent(e-> System.out.println(e.getName()));
+          //   ifPresentOrElse(e-> System.out.println(e.getName()), ()-> System.out.println("marry not found"));
+
+
+
+
+        Map<String, Long> wordCount = Stream.of("welcome to code and decode we welcome to code here".split(" ")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));System.out.println(wordCount);
 	}
 	
 

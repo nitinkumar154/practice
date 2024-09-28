@@ -1,4 +1,4 @@
-package com.padai;
+package com.padai.leetcode.matrix;
 
 public class RotateImage {
 

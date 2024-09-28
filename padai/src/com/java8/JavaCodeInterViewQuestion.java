@@ -9,9 +9,13 @@ import java.util.stream.Stream;
 
 public class JavaCodeInterViewQuestion {
     public static void main(String[] args) {
+        List<Integer> ll = new LinkedList<>();
+        ll.add(3);
+        ll.add(5);
+        ll.get(1);
 
         Set<Integer> set = new HashSet<>();
-        Stream.of(1,2,2,4,22,12,15,66,16,31,16,12,11,1,9,2,25,22,34).filter(x->!set.add(x)).collect(Collectors.toSet()).forEach(System.out::println);
+        Stream.of(1,2,2,4,22,12,15,66,16,31,16,12,11,1,9,2,25,22,34).filter(x->!set.add(x)).collect(Collectors.toList()).forEach(System.out::println);
 
 
         // write a prog to multiple two numbers
@@ -51,11 +55,27 @@ public class JavaCodeInterViewQuestion {
         duplicateVal.stream().forEach(System.out::println);
 List<Integer> intList   =Arrays.asList(1, 2, 2, 4, 22, 12, 15, 66, 16, 31, 16, 12, 11, 1, 9, 2, 25, 22, 34);
 
+        // print duplicate number from list
+        System.out.println("print only duplicate number from list");
 
+       List<Integer> dupNum = Stream.of(1, 2, 2, 4, 22, 12, 15, 66, 16, 31, 16, 12, 11, 1, 9, 2, 25, 22, 34).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream().filter(e->e.getValue()>1).map(Map.Entry::getKey).collect(Collectors.toList());
+            dupNum.stream().forEach(System.out::println);
+
+        System.out.println("find common elelet in arrays");
+        List<Integer> commonEle = Arrays.asList(1,2,3,4,5,6).stream().filter(n1->Arrays.asList(2,3,12,15,5,8).stream().anyMatch(num->num==n1)).collect(Collectors.toList());
+        commonEle.stream().forEach(System.out::println);
 
     }
 
     public static boolean checkPrime(int num){
         return num>1 && IntStream.range(2,(int)Math.sqrt(num)).noneMatch(x->num%x==0);
+
+
+
+
+
+
+
     }
 }

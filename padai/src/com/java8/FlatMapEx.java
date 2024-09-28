@@ -25,6 +25,8 @@ public class FlatMapEx {
 // sort list of employee based in salary decending order
         Arrays.asList(e1, e2, e3, e4).stream().sorted((i1,i2)->i2.sal.compareTo(i1.sal)).forEach(System.out::println);
 
+        List<Integer> top3Sal = Arrays.asList(e1, e2, e3, e4).stream().sorted((i1,i2)->i2.sal.compareTo(i1.sal)).limit(3).map(e->e.sal).collect(Collectors.toList());
+        System.out.println(top3Sal);
         // fetch top three salary employee
         Arrays.asList(e1, e2, e3, e4).stream().sorted((i1,i2)->i2.sal.compareTo(i1.sal)).limit(3).forEach(System.out::println);
 
@@ -51,6 +53,9 @@ public class FlatMapEx {
             arr[arr.length-1-i]= temp;
 
         });
+        System.out.println("odd number sum is "+ IntStream.range(1,100).filter(x->x%2!=0)
+               // .peek(System.out::println)
+                .summaryStatistics().getSum());
         System.out.println(Arrays.toString(arr));
 
         String[] strArr = {"Nitin","Allahabad", "kolalampur", "japan"};

@@ -1,11 +1,11 @@
 package com.java8;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Courses {
 
@@ -60,7 +60,7 @@ public class Courses {
 	private int numOfStudent;
 	
 	public static void main(String[] args) {
-		List<Courses> list = List.of(
+		List<Courses> list = Arrays.asList(
 				new Courses("Spring", "framework", 98, 20000),
 				new Courses("Spring Boot", "framework", 95, 18000),
 				new Courses("API", "Micro service", 95, 22000),
@@ -89,7 +89,7 @@ list.stream().sorted(courseComparatorByScoreAndStudentsInReverse).forEach(System
 
 
 
-System.out.println("courses greater than 95 score are \n"+list.stream().takeWhile(course-> course.getReviewScore()>=95).collect(Collectors.toList()));
+//System.out.println("courses greater than 95 score are \n"+list.stream().takeWhile(course-> course.getReviewScore()>=95).collect(Collectors.toList()));
 System.out.println("example of the group by");
 
 System.out.println(list.stream().collect(Collectors.groupingBy(course->course.getCategory(),Collectors.counting())));
@@ -107,16 +107,31 @@ System.out.println(list.stream().collect(Collectors.groupingBy(course->course.ge
 	
 	
 	
-	List<Integer>intList = List.of(1, 55, 24, 22, 37);
+	List<Integer>intList = Arrays.asList(1, 55, 24, 22, 37);
 	int num = intList.stream().findFirst().orElse(Integer.MIN_VALUE);
 	System.out.println("first value in list"+num);
+		System.out.println(" course category with their avg score");
+		Map<String, Double> catogoryMap = list.stream().collect(Collectors.groupingBy(Courses::getCategory, Collectors.averagingInt(Courses::getReviewScore)));
+		System.out.println(catogoryMap);
+
+		System.out.println("find highest score in each category");
+		Map<String, Optional<Courses>> collect = list.stream().collect(Collectors.groupingBy(Courses::getCategory, Collectors.maxBy(Comparator.comparing(Courses::getReviewScore))));
+		System.out.println(collect);
+
+		Map<String, Long> wordCount = Stream.of("welcome to code and decode we welcome to code here".split(" ")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));System.out.println(wordCount);
+
+
+
 	}
 	
 	
 	
 	// create a map with key as course category and course as value,
-	
-	
+
+
+
+
+
 
 
 	

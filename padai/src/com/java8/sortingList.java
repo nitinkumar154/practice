@@ -1,7 +1,9 @@
 package com.java8;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -10,7 +12,8 @@ public static void printNumbers(int a ) {
 	System.out.println(a);
 }
 	public static void main(String[] args) {
-		List<Integer> numbers = List.of(21, 24, 13, 24, 15, 46, 7, 18, 9, 10);
+		List<Integer> numbers = Arrays.asList(21, 24, 13, 24, 15, 46, 7, 18, 9, 10);
+		System.out.println(numbers.stream().mapToInt(x->x).summaryStatistics().getMax());
 		List<Integer>list = numbers;
 		list.stream().forEach(System.out::println);
 // ptint even numbers
@@ -19,7 +22,7 @@ public static void printNumbers(int a ) {
 		System.out.println("print odd numbers");
 		list.stream().filter(num->!((num%2)==0)).forEach(System.out::println);
 		
-		List<String>courses = List.of("spring", "springboot", "java", "Spring service");
+		List<String>courses = Arrays.asList("spring", "springboot", "java", "Spring service");
 		//print all the courses with spring 
 		
 		courses.stream().filter(course-> course.contains("spring")).forEach(System.out::println);
@@ -34,9 +37,7 @@ public static void printNumbers(int a ) {
 		System.out.println("course length");
 		courses.stream().map(course->course.length()).forEach(System.out::println);
 	// sum of list of numbers
-		System.out.println("""
-		sum of the numbers
-		""");
+		System.out.println("sum of the number");
 	int sum = list.stream().reduce(0, Integer::sum);
 	 sum = list.stream().reduce(0, (x,y)->x+y);
 	System.out.println(sum);
